@@ -1,0 +1,17 @@
+{
+    "name": "wakanda-eventsource",
+    "description": "Server-Sent Events for Wakanda",
+    "version": "0.1",
+    "author": [
+        "Choisel Fogang (http://github.com/Choisel)",
+        "Alexandre Morgaut (http://github.com/AMorgaut)"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/AMorgaut/wakanda-eventsource.git"
+    },
+    "keywords": ["wakanda", "ssjs", "sse", "eventsource", "push", "html5", "w3c"],
+    "main": "./index.js",
+    "engines": {"wakanda" : ">=4"},
+    "license": "MIT"
+}
