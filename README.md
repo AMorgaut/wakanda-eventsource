@@ -17,7 +17,7 @@ Start the service on Wakanda Server. A good place for this code is usually a Wak
 
 ```javascript
 
-require('wakanda-event-source').start();
+require('wakanda-eventsource').start();
 
 ```
 
@@ -29,7 +29,7 @@ Default `ServerEvent` are received by the client as `MessageEvent`. To send a `M
 
 ```javascript
 
-require('wakanda-event-source').push('a message from the server');
+require('wakanda-eventsource').push('a message from the server');
 
 ```
 
@@ -37,7 +37,7 @@ If you want to dispatch on the client a specific Server Event you can use `pushE
 
 ```javascript
 
-require('wakanda-event-source').pushEvent({
+require('wakanda-eventsource').pushEvent({
     'itempurchased', 
     '5 "DVD" items have been purchased'
 });
@@ -48,7 +48,7 @@ If you want the pushed messaged to be an object message, you can tell the method
 
 ```javascript
 
-require('wakanda-event-source').pushEvent(
+require('wakanda-eventsource').pushEvent(
     'itempurchased',
     {
     	nb: 5,
