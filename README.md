@@ -37,10 +37,10 @@ If you want to dispatch on the client a specific Server Event you can use `pushE
 
 ```javascript
 
-require('wakanda-event-source').pushEvent(
+require('wakanda-event-source').pushEvent({
     'itempurchased', 
     '5 "DVD" items have been purchased'
-);
+});
 
 ```
 
