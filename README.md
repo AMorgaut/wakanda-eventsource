@@ -74,18 +74,7 @@ You can then listen to all Server Events via an `onmessage` handler
 ```javascript
 
 sse.onmessage = function (event) {
-	var
-		data;
-
-	switch (event.type) {
-	case 'itempurchased':
-		data = JSON.parse(event.data);
-		console.log(data.nb, '"' + data.type + '"', 'items have been purchased')
-		break;
-
-	default:
-		alert(event.data);
-	}
+	console.log(event)
 };
 
 ```
@@ -117,6 +106,7 @@ sse.addEventListener('itempurchased', function (event) {
 
 * [W3C Candidate Recommmendation](http://w3.org/TR/Eventsource)
 * [WHATWG HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html)
+* [HTML5 Rocks tutorial](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
 
 ##Disclaimer##
 
