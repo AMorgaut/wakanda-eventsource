@@ -69,7 +69,7 @@ var sse = new EventSource('/eventsource');
 
 ```
 
-You can then listen to all Server Events via an `onmessage` handler
+You can then listen to basic Server Message Events via an `onmessage` handler
 
 ```javascript
 
@@ -79,7 +79,7 @@ sse.onmessage = function onservermessage(event) {
 
 ```
 
-Or you can listen to only some specific events
+Or you can listen to any specific events using `addEventListener()`
 
 
 ```javascript
