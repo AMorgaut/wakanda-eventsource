@@ -73,7 +73,7 @@ You can then listen to all Server Events via an `onmessage` handler
 
 ```javascript
 
-sse.onmessage = function (event) {
+sse.onmessage = function onservermessage(event) {
 	console.log(event)
 };
 
@@ -84,13 +84,13 @@ Or you can listen to only some specific events
 
 ```javascript
 
-sse.addEventListener('itempurchased', function (event) {
+sse.addEventListener('itempurchased', function onitempurchased(event) {
 	var
 		data;
 
 	data = JSON.parse(event.data);
 	console.log(data.nb, '"' + data.type + '"', 'items have been purchased')
-};
+});
 
 ```
 
