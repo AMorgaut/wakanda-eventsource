@@ -6,8 +6,9 @@ In addition to the Serve-Sent Events aka EventSource support, the original repos
  
 ##About##
  
+This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**.
 
-This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**
+This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) excluding IE for wich the [EventSource Polyfill](https://github.com/Yaffle/EventSource) works well
 
 ##How to use##
 
@@ -107,6 +108,8 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * [W3C Candidate Recommmendation](http://w3.org/TR/Eventsource)
 * [WHATWG HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html)
 * [HTML5 Rocks tutorial](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
+* [Can I use...](http://caniuse.com/#search=eventsource)
+* [EventSource Polyfill](https://github.com/Yaffle/EventSource) (with IE support)
 
 ##Disclaimer##
 
