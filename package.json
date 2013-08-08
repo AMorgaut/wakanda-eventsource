@@ -6,6 +6,9 @@
         "Choisel Fogang (http://github.com/Choisel)",
         "Alexandre Morgaut (http://github.com/AMorgaut)"
     ],
+    "contributors": [
+        "Vegar Ringdal (https://github.com/vegarringdal)"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/AMorgaut/wakanda-eventsource.git"
