@@ -1,8 +1,7 @@
 #wakanda-eventsource#
 
 *This package is based on a fork a repository from [Choisel Fogang](https://github.com/choisel), you can find the original repository there:
-https://github.com/choisel/Wakanda
-In addition to the Serve-Sent Events aka EventSource support, the original repository also include a dedicated Cross-Origin Resources Sharing (aka CORS) support for Wakanda.*
+https://github.com/choisel/Wakanda. In addition to the Server-Sent Events aka EventSource support, the original repository also include a dedicated Cross-Origin Resources Sharing (aka CORS) support for Wakanda.*
  
 ##About##
  
@@ -102,6 +101,7 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * It should be possible to create multiple event sources with different patterns or sub-patterns which could be used as specific **channels**
 * This implementation does not use **last event ID string** for now
 * add a `pause(delay)` method inviting clients to reconnect later (we may allow to pause all connections not belonging to important groups)
+* A parallel client-side lib could help binding such server-sent events to wakanda datasources for live update features
 
 ##References##
 
@@ -110,11 +110,16 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * [HTML5 Rocks tutorial](http://www.html5rocks.com/en/tutorials/eventsource/basics/)
 * [Can I use...](http://caniuse.com/#search=eventsource)
 * [EventSource Polyfill](https://github.com/Yaffle/EventSource) (with IE support)
+* [Server Sent Events - Who said it's not yet ready? (Wakanda forum)](http://forum.wakanda.org/showthread.php?4264-Server-Sent-Events-Who-said-it-s-not-yet-ready)
+* [Notification Library - Receive server events to update datasources](http://forum.wakanda.org/showthread.php?4362-Notification-Library-Receive-server-events-to-update-datasources)
 
 ##Disclaimer##
 
-
 This package is not a native Wakanda component and 4D gives no guaranty to its usage
+
+##Credits##
+
+This package could not have been done that quick without the preliminary works and involvements from [Choisel Fogang](https://github.com/choisel) and [Vegar Ringdal](https://github.com/vegarringdal)
 
 ##License##
 
