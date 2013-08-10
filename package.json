@@ -1,7 +1,7 @@
 {
     "name": "wakanda-eventsource",
     "description": "Server-Sent Events for Wakanda",
-    "version": "0.1",
+    "version": "0.3",
     "author": [
         "Choisel Fogang (http://github.com/Choisel)",
         "Alexandre Morgaut (http://github.com/AMorgaut)"
