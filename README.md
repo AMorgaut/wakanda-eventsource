@@ -7,8 +7,7 @@ https://github.com/choisel/Wakanda. In addition to the Server-Sent Events aka Ev
  
 This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**.
 
-This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) excluding IE for wich the [EventSource Polyfill](https://github.com/Yaffle/EventSource) works well
-
+This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) natively or via the [EventSource Polyfill](https://github.com/Yaffle/EventSource) for IE 
 ##How to use##
 
 ###Start the service###
