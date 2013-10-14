@@ -7,8 +7,7 @@ https://github.com/choisel/Wakanda. In addition to the Server-Sent Events aka Ev
  
 This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**.
 
-This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) excluding IE for wich the [EventSource Polyfill](https://github.com/Yaffle/EventSource) works well
-
+This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) natively or via the [EventSource Polyfill](https://github.com/Yaffle/EventSource) for IE 
 ##How to use##
 
 ###Start the service###
@@ -99,8 +98,8 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * this implementation should support **CORS** to allow potential event subscriptions for external web applications
 * this implementation should differentiate authenticated connections from anonymous ones, The `push()`and `pushEvent()` methods could be able to send server events to only the current **user**, **group**, or even **session** (or even a specific other one if enough permissions).
 * It should be possible to create multiple event sources with different patterns or sub-patterns which could be used as specific **channels**
-* This implementation does not use **last event ID string** for now
-* add a `pause(delay)` method inviting clients to reconnect later (we may allow to pause all connections not belonging to important groups)
+* This implementation use **last event ID string** for reconnections but needs more tests
+* an experimental `pause(delay)` method invite clients to reconnect later (we may allow to pause all connections not belonging to important groups)
 * A parallel client-side lib could help binding such server-sent events to wakanda datasources for live update features
 
 ##References##
