@@ -58,6 +58,8 @@ ServerEvent.prototype.send = function send(asJSON, options) {
 	workerPort.postMessage({
 		id: this.id,
 		type: sse.PUSH, 
+		event: this.type,
+		isComment: isComment,
 		message: this.toString(asJSON, isComment),
 		sessions: options && options.sessions,
 		users: options && options.users
@@ -471,7 +473,7 @@ sse.addListener =  function addListener(event, handler) {
 				type: event,
 				data: event.data
 			});
-		}
+		};
 		listeners.push(handler);
 		listenerProxies.push(listenerProxy);
 

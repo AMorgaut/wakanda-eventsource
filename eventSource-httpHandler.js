@@ -39,8 +39,12 @@ function oneventsourceconnect(httpRequest, httpResponse) {
 		headers,
 		accept,
 		lastEventId,
-		workerPort;
+		worker,
+		workerPort,
+		eventsFilter,
+		noComment;
 
+	
 	if (httpRequest.urlQuery === 'runTests') {
 	    // test suite
 	    return require('wakanda-eventsource/tests/httpHandler').oneventsourceconnect(httpRequest, httpResponse);
@@ -49,22 +53,31 @@ function oneventsourceconnect(httpRequest, httpResponse) {
 	connection = httpResponse;
 	headers = connection.headers;
 	accept = httpRequest.headers.Accept;
-	
+
 	if (accept.indexOf('application/json') > -1) {
-		headers.contentType = 'application/json';
-		return '{"ok": true}';
+		headers['Content-Type'] = 'application/json';
+		return JSON.stringify({
+		    started: true, 
+		    runTest: false
+		});
 	}
 
 	if (accept.indexOf('text/event-stream') === -1) {
-		headers.contentType = 'text/plain';
+		headers['Content-Type'] = 'text/plain';
 		return 'This event source service is active but requires the client to accept "text/event-stream" content type to work';
 	}
+
+
 
 	// Specify that we'll send server events
 	headers['Content-Type'] = 'text/event-stream';
 	headers.Connection = 'keep-alive';
-	headers['Keep-Alive'] = String(KEEP_ALIVE); // default in Firefox
+	headers['Keep-Alive'] = String(KEEP_ALIVE);
 	headers['Cache-Control'] = 'no-cache';
+
+	eventsFilter = httpRequest.urlPath.split('/')[2];
+	eventsFilter = eventsFilter && eventsFilter.split(',');
+	noComment = (httpRequest.urlQuery.split('&').indexOf('noComment') !== -1);
 
 	lastEventId = httpRequest.headers['Last-Event-Id'];
 	if (lastEventId !== undefined) {
@@ -107,7 +120,9 @@ function oneventsourceconnect(httpRequest, httpResponse) {
 		type: 'register',
 		lastEventId: lastEventId,
 		session: currentSession().ID,
-		user: currentUser().ID
+		user: currentUser().ID,
+		eventsFilter: eventsFilter,
+		noComment: noComment
 	});
 
 	// Wait to keep the context alive

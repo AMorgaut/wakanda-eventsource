@@ -50,12 +50,29 @@ self.onconnect = function onconnect(msg) {
 			current;
 
 		function dispatchData(clientConnection, index, list) {
+		    var
+		        filter,
+		        event;
+
 			if (!clientConnection || !clientConnection.postMessage) {
 				// WORKER CONNECTION LOST ?
 				// HTTP CONNECTION CLOSED BY CLIENT ?
 				list.splice(index, 1);
 				return;
 			}
+
+			if (data.isComment && clientConnection.config.noComment) {
+			    // comments refused by this connection
+			    return;
+			}
+
+			filter = clientConnection.config.eventsFilter || [];
+			event = data.event || 'message';
+			if (filter.length && filter.indexOf(data.event) === -1) {
+			    // event not listened by this connection
+			    return;
+			}
+			
 			clientConnection.postMessage({
 				type: sse.PUSH, 
 				message: data.message
@@ -136,6 +153,7 @@ self.onconnect = function onconnect(msg) {
 
 		case "register":
 			// HTTP REQUEST HANDLER CONNECTIONS
+			port.config = data;
 			clientPorts.push(port);
 			if (data.session) {
 				delete waitReconnect[data.session];
@@ -152,7 +170,7 @@ self.onconnect = function onconnect(msg) {
 				missedEvents = [];
 				currentIndex = buffer.length;
 				current = buffer[currentIndex];
-				while (current.id > data.lastEventId) {
+				while (current && current.id > data.lastEventId) {
 					missedEvents.unshift(current.message);
 					currentIndex -= 1;
 					current = buffer[currentIndex];
