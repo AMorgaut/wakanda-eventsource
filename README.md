@@ -65,6 +65,17 @@ var sse = new EventSource('/eventsource');
 
 ```
 
+You can ask the server to only send you specific events
+
+```javascript
+
+// ask to receive only "itempurchased" and "ordercancelled" events
+// adding onmessage listener or listener for any other events than the listed 
+// ones will have no effect
+var sse = new EventSource('/eventsource/itempurchased,ordercancelled');
+
+```
+
 You can then listen to basic Server Message Events via an `onmessage` handler
 
 ```javascript
