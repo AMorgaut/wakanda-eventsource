@@ -12,9 +12,7 @@ This push technology [can be used on all modern platforms](http://caniuse.com/#s
 Start the service on Wakanda Server. A good place for this code is usually a Wakanda bootstrap file.
 
 ```javascript
-
 require('wakanda-eventsource').start();
-
 ```
 
 The default listened pattern is "/eventsource". 
@@ -24,26 +22,32 @@ The default listened pattern is "/eventsource".
 Default `ServerEvent` are received by the client as `MessageEvent`. To send a `MessageEvent`to all client listeners you can simply write:
 
 ```javascript
-
 require('wakanda-eventsource').push('a message from the server');
-
 ```
 
 If you want to dispatch on the client a specific Server Event you can use `pushEvent()`
 
 ```javascript
-
-require('wakanda-eventsource').pushEvent({
+require('wakanda-eventsource').pushEvent(
     'itempurchased', 
     '5 "DVD" items have been purchased'
-});
+);
+```
 
+You can push an event to one or more specific session(s), user(s), or group(s)
+Users and groups can be specified by ids, names, or directly User/Group instances
+
+```javascript
+var sse = require('wakanda-eventsource');
+// Important: The client-side EventSource connection need to be redone on login/logout
+sse.pushEventToSession(currentSession(), 'itempurchased', '5 "DVD" items have been purchased');
+sse.pushEventToUser(currentUser(), 'itempurchased', '5 "DVD" items have been purchased');
+sse.pushEventToGroup(['Marketing', 'Engineering'], 'itempurchased', '5 "DVD" items have been purchased');
 ```
 
 If you want the pushed messaged to be an object message, you can tell the method to encode it in JSON (you could do it yourself but this will make your code lighter). This option works for both `push()`and `pushEvent()` methods.
 
 ```javascript
-
 require('wakanda-eventsource').pushEvent(
     'itempurchased',
     {
@@ -52,7 +56,6 @@ require('wakanda-eventsource').pushEvent(
     },
     true // encode in JSON
 );
-
 ```
 
 ###Listen Server Messages / Events from the client###
@@ -60,37 +63,29 @@ require('wakanda-eventsource').pushEvent(
 You must first create an `EventSource` Listener
 
 ```javascript
-
 var sse = new EventSource('/eventsource');
-
 ```
 
 You can ask the server to only send you specific events
 
 ```javascript
-
 // ask to receive only "itempurchased" and "ordercancelled" events
 // adding onmessage listener or listener for any other events than the listed 
 // ones will have no effect
 var sse = new EventSource('/eventsource/itempurchased,ordercancelled');
-
 ```
 
 You can then listen to basic Server Message Events via an `onmessage` handler
 
 ```javascript
-
 sse.onmessage = function onservermessage(event) {
 	console.log(event)
 };
-
 ```
 
 Or you can listen to any specific events using `addEventListener()`
 
-
 ```javascript
-
 sse.addEventListener('itempurchased', function onitempurchased(event) {
 	var
 		data;
@@ -98,13 +93,11 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 	data = JSON.parse(event.data);
 	console.log(data.nb, '"' + data.type + '"', 'items have been purchased')
 });
-
 ```
 
 ##Potential Enhancements##
 
 * this implementation should support **CORS** to allow potential event subscriptions for external web applications
-* this implementation should differentiate authenticated connections from anonymous ones, The `push()`and `pushEvent()` methods could be able to send server events to only the current **user**, **group**, or even **session** (or even a specific other one if enough permissions).
 * It should be possible to create multiple event sources with different patterns or sub-patterns which could be used as specific **channels**
 * This implementation use **last event ID string** for reconnections but needs more tests
 * an experimental `pause(delay)` method invite clients to reconnect later (we may allow to pause all connections not belonging to important groups)
