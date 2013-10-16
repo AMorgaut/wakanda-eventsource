@@ -1,8 +1,5 @@
-#wakanda-eventsource#
+#WakandaDB Server-Sent Events#
 
-*This package is based on a fork a repository from [Choisel Fogang](https://github.com/choisel), you can find the original repository there:
-https://github.com/choisel/Wakanda. In addition to the Server-Sent Events aka EventSource support, the original repository also include a dedicated Cross-Origin Resources Sharing (aka CORS) support for Wakanda.*
- 
 ##About##
  
 This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**.
