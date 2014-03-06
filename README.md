@@ -98,7 +98,6 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 ##Potential Enhancements##
 
 * this implementation should support **CORS** to allow potential event subscriptions for external web applications
-* It should be possible to create multiple event sources with different patterns or sub-patterns which could be used as specific **channels**
 * This implementation use **last event ID string** for reconnections but needs more tests
 * an experimental `pause(delay)` method invite clients to reconnect later (we may allow to pause all connections not belonging to important groups)
 * A parallel client-side lib could help binding such server-sent events to wakanda datasources for live update features
