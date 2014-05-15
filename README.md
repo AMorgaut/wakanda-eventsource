@@ -101,6 +101,7 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * This implementation use **last event ID string** for reconnections but needs more tests
 * an experimental `pause(delay)` method invite clients to reconnect later (we may allow to pause all connections not belonging to important groups)
 * A parallel client-side lib could help binding such server-sent events to wakanda datasources for live update features
+* this module should register itself as a Wakanda service and take benefits of service settings
 
 ##References##
 
