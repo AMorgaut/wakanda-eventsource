@@ -1,4 +1,4 @@
-=WakandaDB Server-Sent Events=
+= WakandaDB Server-Sent Events
 
 ==About==
  
