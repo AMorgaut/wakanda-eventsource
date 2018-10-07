@@ -1,13 +1,14 @@
-= WakandaDB Server-Sent Events
+# WakandaDB Server-Sent Events
 
-==About==
+## About
  
 This package is meant to provide an HTTP Push support to [WakandaDB](http://wakandadb.org) / [Wakanda](http://wakanda.org) via the W3C / WHATWG HTML5 Standard called **Server-Sent Events** aka **Event Source**.
 
 This push technology [can be used on all modern platforms](http://caniuse.com/#search=eventsource) natively or via the [EventSource Polyfill](https://github.com/Yaffle/EventSource) for IE 
-==How to use==
 
-===Start the service===
+## How to use
+
+### Start the service
 
 Start the service on Wakanda Server. A good place for this code is usually a Wakanda bootstrap file.
 
@@ -17,7 +18,7 @@ require('wakanda-eventsource').start();
 
 The default listened pattern is "/eventsource". 
 
-===Push Messages / Events===
+### Push Messages / Events
 
 Default `ServerEvent` are received by the client as `MessageEvent`. To send a `MessageEvent`to all client listeners you can simply write:
 
@@ -58,7 +59,7 @@ require('wakanda-eventsource').pushEvent(
 );
 ```
 
-===Listen Server Messages / Events from the client===
+### Listen Server Messages / Events from the client
 
 You must first create an `EventSource` Listener
 
@@ -95,7 +96,7 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 });
 ```
 
-==Potential Enhancements==
+## Potential Enhancements
 
 * this implementation should support **CORS** to allow potential event subscriptions for external web applications
 * This implementation use **last event ID string** for reconnections but needs more tests
@@ -103,7 +104,7 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * A parallel client-side lib could help binding such server-sent events to wakanda datasources for live update features
 * this module should register itself as a Wakanda service and take benefits of service settings
 
-==References==
+## References
 
 * [W3C Candidate Recommmendation](http://w3.org/TR/Eventsource)
 * [WHATWG HTML Living Standard](http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html)
@@ -113,15 +114,15 @@ sse.addEventListener('itempurchased', function onitempurchased(event) {
 * [Server Sent Events - Who said it's not yet ready? (Wakanda forum)](http://forum.wakanda.org/showthread.php?4264-Server-Sent-Events-Who-said-it-s-not-yet-ready)
 * [Notification Library - Receive server events to update datasources](http://forum.wakanda.org/showthread.php?4362-Notification-Library-Receive-server-events-to-update-datasources)
 
-==Disclaimer==
+## Disclaimer
 
 This package is not a native Wakanda component and 4D gives no guaranty to its usage
 
-==Credits==
+## Credits
 
 This package could not have been done that quick without the preliminary works and involvements from [Choisel Fogang](https://github.com/choisel) and [Vegar Ringdal](https://github.com/vegarringdal)
 
-==License==
+## License
 
 
 Copyright (c) 2013 Alexandre Morgaut
